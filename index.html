@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        #resultado {
+            font-size: 2rem;
+            color: #d32f2f;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorteo de Número (1 al 4)</h1>
+    <button onclick="sortearNumero()">Sortear</button>
+    <div id="resultado"></div>
+
+    <script>
+        function sortearNumero() {
+            // Generar un número aleatorio entre 1 y 4
+            const numero = Math.floor(Math.random() * 4) + 1;
+
+            // Mostrar el resultado en la página
+            document.getElementById("resultado").textContent = `Número sorteado: ${numero}`;
+        }
+    </script>
+</body>
+</html>
