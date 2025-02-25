@@ -3,24 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Iframe</title>
+    <title>Sorteo de Número</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
+            background-color: #f4f4f9;
             margin: 0;
-            background-color: #f4f4f4;
+            padding: 0;
         }
-        iframe {
-            border: 2px solid #ccc;
-            border-radius: 8px;
+        h1 {
+            color: #333;
+        }
+        #resultado {
+            font-size: 2rem;
+            color: #d32f2f;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/ufY3wQ5Z#Yscf0l05XIV9aNQszEbeTUnrokU49_F0Gd-i_iVgfx4" allowfullscreen></iframe>
+    <h1>Sorteo de Número (1 al 4)</h1>
+    <button onclick="sortearNumero()">Sortear</button>
+    <div id="resultado"></div>
+
+    <script>
+        function sortearNumero() {
+            // Generar un número aleatorio entre 1 y 4
+            const numero = Math.floor(Math.random() * 4) + 1;
+
+            // Mostrar el resultado en la página
+            document.getElementById("resultado").textContent = `Número sorteado: ${numero}`;
+        }
+    </script>
 </body>
 </html>
