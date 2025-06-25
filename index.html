@@ -1,53 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteo de Número</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            color: #333;
-        }
-        #resultado {
-            font-size: 2rem;
-            color: #d32f2f;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Evaluación Fisioterapéutica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px auto;
+      max-width: 900px;
+      padding: 20px;
+      background-color: #EFEFEF;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Contenedor del logo */
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .header-logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      resize: vertical;
+      border: 2px solid #1F91DC;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      height: 30px;
+    }
+
+    .seccion-imprimir {
+      page-break-inside: avoid;
+      border: 2px solid #1F91DC;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: white;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Marca de agua */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: rgba(31, 145, 220, 0.2);
+      font-size: 24px;
+      font-weight: bold;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @media print {
+      .watermark-print {
+        display: block;
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        color: rgba(31, 145, 220, 0.15);
+        font-size: 18px;
+        z-index: 1000;
+      }
+
+      .header-logo img {
+        max-height: 40px;
+      }
+
+      body {
+        background-color: #fff;
+      }
+
+      .seccion-imprimir {
+        border: 2px solid #000;
+      }
+
+      textarea,
+      input[type="text"] {
+        border: none;
+        background-color: transparent;
+      }
+
+      button {
+        display: none;
+      }
+    }
+
+    /* Para preservar espacios y saltos de línea */
+    .contenido {
+      white-space: pre-line;
+      margin-left: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Sorteo de Número (1 al 4)</h1>
-    <button onclick="sortearNumero()">Sortear</button>
-    <div id="resultado"></div>
 
-    <script>
-        function sortearNumero() {
-            // Generar un número aleatorio entre 1 y 4
-            const numero = Math.floor(Math.random() * 4) + 1;
+  <!-- Logo -->
+  <div class="header-logo">
+    <img src="logo.png" alt="Logo Clínica" onerror="this.style.display='none'"> <!-- Cambia "logo.png" por la ruta de tu logo -->
+    <div class="watermark">@franckeyfisio</div>
+  </div>
 
-            // Mostrar el resultado en la página
-            document.getElementById("resultado").textContent = `Número sorteado: ${numero}`;
-        }
-    </script>
+  <h1>Evaluación Fisioterapéutica</h1>
+
+  <form id="formularioEvaluacion">
+    <label for="nombre">Nombre del Paciente:</label>
+    <input type="text" id="nombre" placeholder="Ingrese nombre completo">
+
+    <label for="examenFisico">Examen Físico:</label>
+    <textarea id="examenFisico" placeholder="Describa hallazgos del examen físico"></textarea>
+
+    <label for="evolucion">Evolución:</label>
+    <textarea id="evolucion" placeholder="Ingrese evolución del paciente"></textarea>
+
+    <label for="tratamiento">Tratamiento:</label>
+    <textarea id="tratamiento" placeholder="Descripción del tratamiento aplicado"></textarea>
+
+    <button type="button" onclick="imprimirEvaluacion()">Imprimir Evaluación</button>
+  </form>
+
+  <script>
+    function imprimirEvaluacion() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const examenFisico = document.getElementById("examenFisico").value.trim();
+      const evolucion = document.getElementById("evolucion").value.trim();
+      const tratamiento = document.getElementById("tratamiento").value.trim();
+
+      const ventanaImpresion = window.open('', '_blank');
+      ventanaImpresion.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Evaluación Fisioterapéutica - ${nombre}</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: white; }
+            h1 { text-align: center; }
+            .header-logo {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            }
+            .header-logo img {
+              height: 50px;
+              width: auto;
+            }
+            .seccion-imprimir {
+              border: 2px solid #1F91DC;
+              padding: 15px;
+              margin-bottom: 20px;
+              border-radius: 6px;
+            }
+            .label {
+              font-weight: bold;
+              margin-bottom: 5px;
+              margin-top: 10px;
+              display: block;
+            }
+            .contenido {
+              white-space: pre-line;
+              margin-left: 10px;
+            }
+            .watermark-print {
+              position: fixed;
+              bottom: 15px;
+              right: 15px;
+              color: rgba(31, 145, 220, 0.15);
+              font-size: 18px;
+              font-weight: bold;
+              z-index: 1000;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header-logo">
+            <img src="logo.png" alt="Logo Clínica" onerror="this.style.display='none'">
+          </div>
+
+          <h1>Evaluación Fisioterapéutica</h1>
+
+          <div class="seccion-imprimir">
+            <div class="label">Nombre del Paciente:</div>
+            <div class="contenido">${nombre || "No especificado."}</div>
+          </div>
+
+          <div class="seccion-imprimir">
+            <div class="label">Examen Físico:</div>
+            <div class="contenido">${examenFisico || "No especificado."}</div>
+          </div>
+
+          <div class="seccion-imprimir">
+            <div class="label">Evolución:</div>
+            <div class="contenido">${evolucion || "No especificado."}</div>
+          </div>
+
+          <div class="seccion-imprimir">
+            <div class="label">Tratamiento:</div>
+            <div class="contenido">${tratamiento || "No especificado."}</div>
+          </div>
+
+          <!-- Marca de agua visible al imprimir -->
+          <div class="watermark-print">@franckeyfisio</div>
+        </body>
+        </html>
+      `);
+      ventanaImpresion.document.close();
+      ventanaImpresion.focus();
+      ventanaImpresion.print();
+    }
+  </script>
+
 </body>
 </html>
