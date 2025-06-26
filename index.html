@@ -117,7 +117,7 @@
 
       body {
         background-color: #fff;
-        font-family: 'MiFuente', Arial, sans-serif; /* Volver a Arial en impresión si es preferible */
+        font-family: 'MiFuente', Arial, sans-serif;
       }
 
       .seccion-imprimir {
@@ -184,8 +184,16 @@
         <head>
           <title>Evaluación Fisioterapéutica - ${nombre}</title>
           <style>
+            /* Carga de la fuente personalizada (para impresión) */
+            @font-face {
+              font-family: 'MiFuente';
+              src: url('font.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal;
+            }
+
             body { 
-              font-family: 'MiFuente', Arial, sans-serif; /* En impresión se usa una fuente segura */
+              font-family: 'MiFuente', Arial, sans-serif; /* Ahora sí usará MiFuente */
               margin: 40px; 
               background-color: white; 
             }
