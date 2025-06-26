@@ -5,8 +5,17 @@
   <meta charset="UTF-8">
   <title>Evaluación Fisioterapéutica</title>
   <style>
+    /* Carga de la fuente personalizada */
+    @font-face {
+      font-family: 'MiFuente';
+      src: url('font.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Aplicar la fuente a todo el cuerpo */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'MiFuente', Arial, sans-serif;
       margin: 20px auto;
       max-width: 900px;
       padding: 20px;
@@ -44,10 +53,11 @@
       padding: 8px;
       margin-top: 5px;
       resize: vertical;
-      border: 6px solid #1F91DC; /* ✔️ Grosor cambiado a 6px */
+      border: 6px solid #1F91DC;
       border-radius: 10px;
       box-sizing: border-box;
       font-size: 14px;
+      font-family: 'MiFuente', Arial, sans-serif; /* Fuente personalizada */
     }
 
     input[type="text"] {
@@ -71,6 +81,7 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-family: 'MiFuente', Arial, sans-serif; /* Opcional: botón también con la fuente */
     }
 
     button:hover {
@@ -106,6 +117,7 @@
 
       body {
         background-color: #fff;
+        font-family: Arial, sans-serif; /* Volver a Arial en impresión si es preferible */
       }
 
       .seccion-imprimir {
@@ -117,6 +129,7 @@
       input[type="text"] {
         border: none;
         background-color: transparent;
+        font-family: Arial, sans-serif;
       }
 
       button {
@@ -171,7 +184,11 @@
         <head>
           <title>Evaluación Fisioterapéutica - ${nombre}</title>
           <style>
-            body { font-family: Arial, sans-serif; margin: 40px; background-color: white; }
+            body { 
+              font-family: Arial, sans-serif; /* En impresión se usa una fuente segura */
+              margin: 40px; 
+              background-color: white; 
+            }
             h1 { text-align: center; }
             .header-logo {
               display: flex;
