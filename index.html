@@ -159,6 +159,9 @@
     <label for="nombre">Nombre del Paciente:</label>
     <input type="text" id="nombre" placeholder="Ingrese nombre completo">
 
+    <label for="fisioterapeuta">Fisioterapeuta:</label>
+    <input type="text" id="fisioterapeuta" placeholder="Nombre del fisioterapeuta">
+
     <label for="examenFisico">Examen Físico:</label>
     <textarea id="examenFisico" placeholder="Describa hallazgos del examen físico"></textarea>
 
@@ -174,6 +177,7 @@
   <script>
     function imprimirEvaluacion() {
       const nombre = document.getElementById("nombre").value.trim();
+      const fisioterapeuta = document.getElementById("fisioterapeuta").value.trim();
       const examenFisico = document.getElementById("examenFisico").value.trim();
       const evolucion = document.getElementById("evolucion").value.trim();
       const tratamiento = document.getElementById("tratamiento").value.trim();
@@ -194,7 +198,7 @@
             }
 
             body { 
-              font-family: Arial, sans-serif; /* Ahora sí usará MiFuente */
+              font-family: Arial, sans-serif;
               margin: 40px; 
               background-color: white; 
             }
@@ -246,6 +250,11 @@
           <div class="seccion-imprimir">
             <div class="label">Nombre del Paciente:</div>
             <div class="contenido">${nombre || "No especificado."}</div>
+          </div>
+
+          <div class="seccion-imprimir">
+            <div class="label">Fisioterapeuta:</div>
+            <div class="contenido">${fisioterapeuta || "No especificado."}</div>
           </div>
 
           <div class="seccion-imprimir">
